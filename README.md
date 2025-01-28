@@ -1,1 +1,1 @@
-# Projecy_Platzi_Fake_Store_API
+# Project_Platzi_Fake_Store_API
