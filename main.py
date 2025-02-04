@@ -1,29 +1,37 @@
 import requests
-from selenium.webdriver.support.expected_conditions import title_is
-
 import data
 
-#Obtener todos los productos
+#Get all products
 def get_all_products():
     response = requests.get(data.url + data.get_products)
     response_status_code = response.status_code
-    assert response_status_code == 200, "El status para obtener un producto NO es 200"
+    assert response_status_code == 200, "The status to get a product isn't 200"
     return response.json()
 
-#Obtener un producto por medio de la clave id
+#Get a single product through the id key
 def get_a_product_by_id(id):
     response = requests.get(data.url + data.get_products + id)
     response_status_code = response.status_code
     assert type(id) == str
-    assert response_status_code == 200, "El status para obtener un producto por medio del id NO es 200"
+    assert response_status_code == 200, "The status to get a product through the id isn't 200"
     return response.json()
 
-#Obtener el valor de una clave del producto
+#Get the value of a product key
 def get_info_by_product():
     response = requests.get(data.url + data.get_products)
     response_status_code = response.status_code
     response_body = response.json()
     price_tshirt = response_body[0]["price"]
     title_shirt = response_body[0]["title"]
-    assert response_status_code == 200, "El status para obtener el precio de un producto NO es 200"
+    assert response_status_code == 200, "The status to get product's price isn't 200"
     return price_tshirt, title_shirt
+
+#Create a product
+def post_product(body):
+    response = requests.post(data.url + data.post_product, json=body)
+    response_status_code = response.status_code
+    assert response_status_code == 201, "The status to create a product isn't 201"
+    return response.json()
+
+r = post_product(data.product_body)
+print(r)
