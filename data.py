@@ -1,6 +1,4 @@
-url = 'https://api.escuelajs.co'
-get_products = '/api/v1/products/'
-post_product = '/api/v1/products/'
+
 product_body = {
   "title": "Radiant Creamy Concealer with Medium Coverage",
   "price": 32,
