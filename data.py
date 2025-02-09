@@ -1,3 +1,4 @@
+product_id = 1
 
 product_body = {
   "title": "Radiant Creamy Concealer with Medium Coverage",
