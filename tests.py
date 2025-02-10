@@ -1,6 +1,7 @@
+from http.client import responses
+
 import data
 import sender_stand_request
-import requests
 
 def test_get_all_products():
     response = sender_stand_request.get_all_products()
@@ -16,8 +17,8 @@ def test_get_all_products_by_id():
     assert response.status_code == 200
     return ids
 
-def test_get_a_product_by_id(id="7"):
-    response = sender_stand_request.get_product_by_id(id)
+def test_get_a_product_by_id():
+    response = sender_stand_request.get_product_by_id(data.id)
     assert response.status_code == 200
     return response.json()
 
@@ -54,5 +55,17 @@ def test_put_product():
     product_created = test_post_product()
     product_id = product_created['id']
     response = sender_stand_request.put_product(product_id, data.updated_product_body)
+    assert response.status_code == 200
+    return response.json()
+
+def test_delete_created_product():
+    product_created = test_post_product()
+    product_id = product_created['id']
+    response = sender_stand_request.delete_created_product(product_id)
+    assert response.status_code == 200
+    return response.json()
+
+def test_delete_product():
+    response = sender_stand_request.delete_product(data.id)
     assert response.status_code == 200
     return response.json()

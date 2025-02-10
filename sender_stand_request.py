@@ -1,10 +1,6 @@
 from http.client import responses
 
-import pytest
 import requests
-from selenium.webdriver.common.devtools.v85.dom import query_selector
-
-import data
 import configuration as c
 
 #Get all products
@@ -40,4 +36,12 @@ def post_product(body):
 
 def put_product(id, body):
     response = requests.put(c.URL_SERVICE + c.GET_PRODUCTS + str(id), json=body)
+    return response
+
+def delete_created_product(id):
+    response = requests.delete(c.URL_SERVICE + c.GET_PRODUCTS + str(id))
+    return response
+
+def delete_product(id):
+    response = requests.delete(c.URL_SERVICE + c.GET_PRODUCTS + id)
     return response
